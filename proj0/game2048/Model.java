@@ -138,6 +138,12 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
+        int size = b.size();
+        for (int i=0;i<size;i++){
+            for (int j=0;j<size;j++){
+                if (b.tile(i,j) == null) return true;
+            }
+        }
         return false;
     }
 
@@ -147,7 +153,13 @@ public class Model extends Observable {
      * given a Tile object t, we get its value with t.value().
      */
     public static boolean maxTileExists(Board b) {
-        // TODO: Fill in this function.
+        int size = b.size();
+        for (int i=0;i<size;i++){
+            for (int j=0;j<size;j++){
+                Tile t = b.tile(i,j);
+                if (t != null && t.value()==MAX_PIECE) return true;
+            }
+        }
         return false;
     }
 
@@ -158,7 +170,15 @@ public class Model extends Observable {
      * 2. There are two adjacent tiles with the same value.
      */
     public static boolean atLeastOneMoveExists(Board b) {
-        // TODO: Fill in this function.
+        if (emptySpaceExists(b)) return true;
+        int size = b.size();
+        for (int i=0;i<size;i++){
+            for (int j=0;j<size;j++){
+                Tile t = b.tile(i, j);
+                if (i<size-1 && t.value()==b.tile(i+1,j).value()) return true;
+                if (j<size-1 && t.value()==b.tile(i,j+1).value()) return true;
+            }
+        }
         return false;
     }
 

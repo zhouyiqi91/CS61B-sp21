@@ -3,6 +3,8 @@ package game2048;
 import java.util.Formatter;
 import java.util.Observable;
 
+import static java.lang.Math.min;
+
 
 /** The state of a game of 2048.
  *  @author TODO: YOUR NAME HERE
@@ -113,10 +115,44 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
-
+        board.setViewingPerspective(side);
+        for (int col=0; col < size();col++){
+            if (tiltCol(col)) changed = true;
+        }
+        board.setViewingPerspective(Side.NORTH);
+        
         checkGameOver();
         if (changed) {
             setChanged();
+        }
+        return changed;
+    }
+
+    private int upMost(int col, int row, int min_merged) {
+        Tile cur = board.tile(col, row);
+        int pos = row + 1;
+        for (; pos < min_merged; pos++){
+            Tile nxt = board.tile(col, pos);
+            if (nxt == null) continue;
+            if (nxt.value() != cur.value()) break;
+        }
+        return pos-1;
+    }
+
+    private boolean tiltCol(int col) {
+        boolean changed = false;
+        int min_merged = size() ;
+        for (int i=size()-1;i>=0;i--) {
+            Tile cur = board.tile(col, i);
+            if (cur == null) continue;
+            int upmost = upMost(col, i, min_merged);
+            if (upmost != i) {
+                if (board.move(col, upmost, cur)) {
+                    score += 2*cur.value();
+                    min_merged = upmost;
+                }
+                changed = true;
+            }
         }
         return changed;
     }

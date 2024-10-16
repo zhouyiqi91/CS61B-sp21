@@ -4,6 +4,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     private class Node {
         public T item;
         public Node prev, next;
+
         public Node(T i, Node prevNode, Node nextNode) {
             item = i;
             prev = prevNode;
@@ -21,7 +22,6 @@ public class LinkedListDeque<T> implements Deque<T> {
         size = 0;
     }
 
-    /** Adds an item to the front of the list. */
     @Override
     public void addFirst(T item) {
         Node nxt = dummy.next;
@@ -31,7 +31,9 @@ public class LinkedListDeque<T> implements Deque<T> {
         size += 1;
     }
 
-    /** Adds an item to the end of the list. */
+    /**
+     * Adds an item to the end of the list.
+     */
     @Override
     public void addLast(T item) {
         Node prev = dummy.prev;
@@ -49,9 +51,8 @@ public class LinkedListDeque<T> implements Deque<T> {
             p = p.next;
         }
         System.out.println();
-    };
+    }
 
-    /** Removes and returns the item at the front of the deque. If no such item exists, returns null */
     @Override
     public T removeFirst() {
         if (isEmpty()) return null;
@@ -61,9 +62,8 @@ public class LinkedListDeque<T> implements Deque<T> {
         newNext.prev = dummy;
         size -= 1;
         return nxt.item;
-    };
+    }
 
-    /** Removes and returns the item at the back of the deque. If no such item exists, returns null */
     @Override
     public T removeLast() {
         if (isEmpty()) return null;
@@ -73,22 +73,36 @@ public class LinkedListDeque<T> implements Deque<T> {
         newPrev.next = dummy;
         size -= 1;
         return prev.item;
-    };
+    }
 
-    /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
-     * If no such item exists, returns null. Must not alter the deque!
-     */
     @Override
     public T get(int index) {
-        if (index<0 || index >= size) return null;
+        if (index < 0 || index >= size) return null;
         Node p = dummy.next;
-        for (int i=0;i<index;i++) {
+        for (int i = 0; i < index; i++) {
             p = p.next;
         }
         return p.item;
-    };
+    }
 
     @Override
     public int size() {
         return size;
-    }}
+    }
+
+    /** Same as get, but uses recursion. */
+    public T getRecursive(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        return getRecursiveHelper(dummy.next, index);
+    }
+
+    /** Helper method that performs the recursive traversal. */
+    private T getRecursiveHelper(Node node, int index) {
+        if (index == 0) {
+            return node.item;
+        }
+        return getRecursiveHelper(node.next, index - 1);
+    }
+}

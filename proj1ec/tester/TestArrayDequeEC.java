@@ -18,7 +18,7 @@ public class TestArrayDequeEC {
             int randomNumber = StdRandom.uniform(2);
             if (randomNumber==0) {
                 student.addFirst(i);
-                solution.addLast(i);
+                solution.addFirst(i);
                 errString += ("addFirst(" + i + ")\n");
             } else {
                 student.addLast(i);

@@ -30,15 +30,15 @@ public class TestArrayDequeEC {
         for (int i=0;i<N;i++){
             int randomNumber = StdRandom.uniform(2);
             if (randomNumber==0) {
-                Integer item1 = student.removeLast();
-                Integer item2 = solution.removeLast();
+                Integer item1 = solution.removeLast();
+                Integer item2 = student.removeLast();
                 errString += ("removeLast()\n");
-                assertEquals(errString, item2, item1);
+                assertEquals(errString, item1, item2);
             } else {
-                Integer item1 = student.removeFirst();
-                Integer item2 = solution.removeFirst();
+                Integer item1 = solution.removeFirst();
+                Integer item2 = student.removeFirst();
                 errString += ("removeFirst()\n");
-                assertEquals(errString, item2, item1);
+                assertEquals(errString, item1, item2);
             }
         }
 

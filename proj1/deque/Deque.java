@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.Iterator;
+
 public interface Deque<T> {
     /** Adds an item to the front of the list. */
     void addFirst(T item);
@@ -25,4 +27,7 @@ public interface Deque<T> {
      * If no such item exists, returns null. Must not alter the deque!
      */
     T get(int index);
+
+    public Iterator<T> iterator();
+
 }

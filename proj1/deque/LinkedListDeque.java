@@ -1,6 +1,8 @@
 package deque;
 
-public class LinkedListDeque<T> implements Deque<T> {
+import java.util.Iterator;
+
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private class Node {
         public T item;
         public Node prev, next;
@@ -104,5 +106,55 @@ public class LinkedListDeque<T> implements Deque<T> {
             return node.item;
         }
         return getRecursiveHelper(node.next, index - 1);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListDequeIterator();
+    }
+
+    private class LinkedListDequeIterator implements Iterator<T> {
+        private Node nxt = dummy.next;
+
+        @Override
+        public boolean hasNext() {
+            return nxt != dummy;
+        }
+
+        @Override
+        public T next() {
+            T res = nxt.item;
+            nxt = nxt.next;
+            return res;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // Step 1: Check for self-reference
+        if (this == o) return true;
+
+        // Step 2: Check if 'o' is null or if they are not the same class
+        if (!(o instanceof LinkedListDeque)) return false;
+
+        // Step 3: Cast 'o' to LinkedListDeque
+        LinkedListDeque<T> other = (LinkedListDeque<T>) o;
+
+        // Step 4: Check if sizes are different
+        if (this.size != other.size) return false;
+
+        // Step 5: Check if contents are the same
+        Node thisNode = this.dummy.next;
+        Node otherNode = other.dummy.next;
+
+        while (thisNode != this.dummy && otherNode != other.dummy) {
+            if (!thisNode.item.equals(otherNode.item)) {
+                return false;
+            }
+            thisNode = thisNode.next;
+            otherNode = otherNode.next;
+        }
+
+        return true;
     }
 }

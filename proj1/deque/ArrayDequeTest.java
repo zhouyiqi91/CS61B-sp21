@@ -136,4 +136,102 @@ public class ArrayDequeTest {
         }
 
     }
+
+    @Test
+    public void iterTest() {
+        LinkedListDeque<Integer> dq = new LinkedListDeque<>();
+        dq.addLast(1);
+        dq.addLast(2);
+        int i = 0;
+        for (int x: dq) {
+            if (i==0) assertEquals(1, x);
+            if (i==1) assertEquals(2, x);
+            i++;
+        }
+    }
+
+    @Test
+    public void testEqualsSameObject() {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+
+        // Test that a deque equals itself
+        assertTrue(deque.equals(deque));
+    }
+
+    @Test
+    public void testEqualsNull() {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+
+        // Test that a deque does not equal null
+        assertFalse(deque.equals(null));
+    }
+
+    @Test
+    public void testEqualsDifferentClass() {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+
+        String notADeque = "I am not a deque";
+
+        // Test that a deque does not equal an object of a different class
+        assertFalse(deque.equals(notADeque));
+    }
+
+    @Test
+    public void testEqualsSameContents() {
+        ArrayDeque<Integer> deque1 = new ArrayDeque<>();
+        ArrayDeque<Integer> deque2 = new ArrayDeque<>();
+
+        deque1.addLast(1);
+        deque1.addLast(2);
+        deque1.addLast(3);
+
+        deque2.addLast(1);
+        deque2.addLast(2);
+        deque2.addLast(3);
+
+        // Test that two deques with the same contents are equal
+        assertTrue(deque1.equals(deque2));
+    }
+
+    @Test
+    public void testEqualsDifferentSizes() {
+        ArrayDeque<Integer> deque1 = new ArrayDeque<>();
+        ArrayDeque<Integer> deque2 = new ArrayDeque<>();
+
+        deque1.addLast(1);
+        deque1.addLast(2);
+        deque1.addLast(3);
+
+        deque2.addLast(1);
+        deque2.addLast(2);
+
+        // Test that two deques with different sizes are not equal
+        assertFalse(deque1.equals(deque2));
+    }
+
+    @Test
+    public void testEqualsDifferentContents() {
+        ArrayDeque<Integer> deque1 = new ArrayDeque<>();
+        ArrayDeque<String> deque2 = new ArrayDeque<>();
+
+        deque1.addLast(1);
+        deque1.addLast(2);
+        deque1.addLast(3);
+
+        deque2.addLast("1");
+        deque2.addLast("2");
+        deque2.addLast("3");  // Different element here
+
+        // Test that two deques with different contents are not equal
+        assertFalse(deque1.equals(deque2));
+    }
 }

@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public interface Deque<T> {
+public interface Deque<T>  {
     /** Adds an item to the front of the list. */
     void addFirst(T item);
 

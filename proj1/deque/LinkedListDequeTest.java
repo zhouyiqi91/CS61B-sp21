@@ -233,4 +233,21 @@ public class LinkedListDequeTest {
         // Test that two deques with different contents are not equal
         assertFalse(deque1.equals(deque2));
     }
+
+    @Test
+    public void testArray() {
+        LinkedListDeque<Integer> deque1 = new LinkedListDeque<>();
+        ArrayDeque<Integer> deque2 = new ArrayDeque<>();
+
+        deque1.addLast(1);
+        deque1.addLast(2);
+        deque1.addLast(3);
+
+        deque2.addLast(1);
+        deque2.addLast(2);
+        deque2.addLast(3);  // Different element here
+
+        // Test that two deques with different contents are not equal
+        assertTrue(deque1.equals(deque2));
+    }
 }

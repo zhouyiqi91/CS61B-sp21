@@ -135,24 +135,15 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         if (this == o) return true;
 
         // Step 2: Check if 'o' is null or if they are not the same class
-        if (!(o instanceof LinkedListDeque)) return false;
+        if (!(o instanceof Deque)) return false;
 
-        // Step 3: Cast 'o' to LinkedListDeque
-        LinkedListDeque<T> other = (LinkedListDeque<T>) o;
+        Deque<T> other = (Deque) o;
+        if (other.size() != size) return false;
 
-        // Step 4: Check if sizes are different
-        if (this.size != other.size) return false;
-
-        // Step 5: Check if contents are the same
-        Node thisNode = this.dummy.next;
-        Node otherNode = other.dummy.next;
-
-        while (thisNode != this.dummy && otherNode != other.dummy) {
-            if (!thisNode.item.equals(otherNode.item)) {
-                return false;
-            }
-            thisNode = thisNode.next;
-            otherNode = otherNode.next;
+        Node p = dummy.next;
+        for (int i=0;i<size;i++) {
+            if (p.item != other.get(i)) return false;
+            p = p.next;
         }
 
         return true;

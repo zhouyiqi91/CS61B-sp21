@@ -6,9 +6,11 @@ import deque.Deque;
 
 //Note: This file will not compile until you complete the Deque implementations
 public class GuitarString {
-    /** Constants. Do not change. In case you're curious, the keyword final
+    /**
+     * Constants. Do not change. In case you're curious, the keyword final
      * means the values cannot be changed at runtime. We'll discuss this and
-     * other topics in lecture on Friday. */
+     * other topics in lecture on Friday.
+     */
     private static final int SR = 44100;      // Sampling Rate
     private static final double DECAY = .996; // energy decay factor
 
@@ -22,9 +24,9 @@ public class GuitarString {
         //       cast the result of this division operation into an int. For
         //       better accuracy, use the Math.round() function before casting.
         //       Your should initially fill your buffer array with zeros.
-        int capacity = (int)(Math.round(SR / frequency));
+        int capacity = (int) (Math.round(SR / frequency));
         buffer = new ArrayDeque<>();
-        for (int i=0;i<capacity;i++){
+        for (int i = 0; i < capacity; i++) {
             buffer.addLast(0.0);
         }
     }
@@ -63,4 +65,3 @@ public class GuitarString {
         return buffer.get(0);
     }
 }
-    // Remove all comments that say TODO when you're done.

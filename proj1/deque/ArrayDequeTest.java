@@ -146,8 +146,12 @@ public class ArrayDequeTest {
         dq.addLast(2);
         int i = 0;
         for (int x : dq) {
-            if (i == 0) assertEquals(1, x);
-            if (i == 1) assertEquals(2, x);
+            if (i == 0) {
+                assertEquals(1, x);
+            }
+            if (i == 1) {
+                assertEquals(2, x);
+            }
             i++;
         }
     }

@@ -10,13 +10,13 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         this.c = c;
     }
 
-    public T max(Comparator<T> c) {
+    public T max(Comparator<T> newC) {
         if (isEmpty()) {
             return null;
         }
         T res = get(0);
         for (int i = 1; i < size(); i++) {
-            if (c.compare(get(i), res) > 0) {
+            if (newC.compare(get(i), res) > 0) {
                 res = get(i);
             }
         }

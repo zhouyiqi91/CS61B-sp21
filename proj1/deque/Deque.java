@@ -2,8 +2,10 @@ package deque;
 
 import java.util.Iterator;
 
-public interface Deque<T>  {
-    /** Adds an item to the front of the list. */
+public interface Deque<T> {
+    /**
+     * Adds an item to the front of the list.
+     */
     void addFirst(T item);
 
     void addLast(T item);
@@ -16,10 +18,14 @@ public interface Deque<T>  {
 
     void printDeque();
 
-    /** Removes and returns the item at the front of the deque. If no such item exists, returns null */
+    /**
+     * Removes and returns the item at the front of the deque. If no such item exists, returns null
+     */
     T removeFirst();
 
-    /** Removes and returns the item at the back of the deque. If no such item exists, returns null */
+    /**
+     * Removes and returns the item at the back of the deque. If no such item exists, returns null
+     */
     T removeLast();
 
     /**
@@ -28,6 +34,6 @@ public interface Deque<T>  {
      */
     T get(int index);
 
-    public Iterator<T> iterator();
+    Iterator<T> iterator();
 
 }

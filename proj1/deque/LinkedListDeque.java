@@ -7,7 +7,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         private T item;
         private Node prev, next;
 
-        public Node(T i, Node prevNode, Node nextNode) {
+        Node(T i, Node prevNode, Node nextNode) {
             item = i;
             prev = prevNode;
             next = nextNode;
@@ -158,7 +158,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
         Node p = dummy.next;
         for (int i = 0; i < size; i++) {
-            if (p.item != other.get(i)) {
+            if (!(p.item.equals(other.get(i)))) {
                 return false;
             }
             p = p.next;
